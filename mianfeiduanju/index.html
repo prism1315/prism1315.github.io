@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费短剧在线观看-短剧免费在线观看平台_免费短剧全集在线看</title>
+<meta name="description" content="免费短剧在线观看入口，按类型、热门与完结状态浏览短剧，提供免费短剧在线观看的剧集列表、简介与播放路径，找到想看的短剧更省时间。">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111a2e'/%3E%3Cpath d='M25 20l20 12-20 12z' fill='%23ff5a5f'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#141a24;
+    --ink-soft:#4a5568;
+    --bg:#f6f4ef;
+    --card:#ffffff;
+    --line:#e4dfd4;
+    --brand:#e8453c;
+    --brand-deep:#c02e26;
+    --night:#151b28;
+    --accent:#ffb703;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  .site-header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,244,239,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:.2px;color:var(--night)}
+  .logo-mark{
+    width:34px;height:34px;border-radius:9px;background:var(--night);
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  .logo-mark svg{width:18px;height:18px}
+  .nav{display:flex;align-items:center;gap:26px;font-size:15px;color:var(--ink-soft);font-weight:500}
+  .nav a{position:relative;padding:4px 0;transition:color .2s}
+  .nav a:hover{color:var(--brand)}
+  .nav a::after{
+    content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;
+    background:var(--brand);transition:width .25s;border-radius:2px;
+  }
+  .nav a:hover::after{width:100%}
+  .nav-cta{
+    background:var(--brand);color:#fff;font-weight:600;font-size:14px;
+    padding:8px 18px;border-radius:999px;transition:background .2s;
+  }
+  .nav-cta:hover{background:var(--brand-deep);color:#fff}
+  .nav-cta::after{display:none}
+  .menu-toggle{
+    display:none;background:none;border:1px solid var(--line);border-radius:8px;
+    width:40px;height:38px;cursor:pointer;align-items:center;justify-content:center;
+  }
+  .menu-toggle span{display:block;width:18px;height:2px;background:var(--night);position:relative}
+  .menu-toggle span::before,.menu-toggle span::after{
+    content:"";position:absolute;left:0;width:18px;height:2px;background:var(--night);
+  }
+  .menu-toggle span::before{top:-6px}
+  .menu-toggle span::after{top:6px}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(160deg,#151b28 0%,#1f2a3d 55%,#2a1f2a 100%);
+    color:#f4f1ea;position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(232,69,60,.35),transparent 68%);
+  }
+  .hero::after{
+    content:"";position:absolute;left:-80px;bottom:-160px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,183,3,.16),transparent 70%);
+  }
+  .hero-inner{position:relative;z-index:2;padding:64px 0 68px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+  .hero-tag{
+    display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+    padding:5px 14px;border-radius:999px;margin-bottom:20px;color:#ffd8d5;
+  }
+  .hero-tag i{width:7px;height:7px;border-radius:50%;background:var(--brand);display:block;animation:pulse 1.8s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{font-size:39px;line-height:1.28;font-weight:800;letter-spacing:.5px;margin-bottom:18px}
+  .hero-sub{font-size:16px;color:#c7cdd8;max-width:520px;margin-bottom:30px}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .btn-primary{
+    background:var(--brand);color:#fff;font-weight:700;font-size:15px;
+    padding:13px 30px;border-radius:12px;transition:transform .2s,background .2s;
+    display:inline-flex;align-items:center;gap:9px;
+  }
+  .btn-primary:hover{background:var(--brand-deep);transform:translateY(-1px)}
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,.28);color:#f4f1ea;font-weight:600;font-size:15px;
+    padding:12px 26px;border-radius:12px;transition:background .2s;
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.09)}
+  .hero-stats{display:flex;gap:34px;margin-top:38px;flex-wrap:wrap}
+  .hero-stats div strong{display:block;font-size:23px;font-weight:800;color:#fff}
+  .hero-stats div span{font-size:13px;color:#9aa4b5}
+
+  .poster{
+    position:relative;border-radius:22px;overflow:hidden;
+    background:linear-gradient(150deg,#e8453c,#7b1f3a 60%,#241a2e);
+    aspect-ratio:4/5;box-shadow:0 24px 60px rgba(0,0,0,.42);
+    display:flex;flex-direction:column;justify-content:space-between;padding:26px;
+  }
+  .poster-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .poster-badge{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;padding:3px 11px;border-radius:999px}
+  .poster-play{
+    width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.95);
+    display:flex;align-items:center;justify-content:center;align-self:center;
+    box-shadow:0 8px 24px rgba(0,0,0,.3);cursor:pointer;transition:transform .2s;
+  }
+  .poster-play:hover{transform:scale(1.07)}
+  .poster-play svg{width:22px;height:22px;margin-left:3px}
+  .poster-bottom h3{font-size:19px;font-weight:800;color:#fff;margin-bottom:4px}
+  .poster-bottom p{font-size:13px;color:rgba(255,255,255,.75)}
+
+  /* Sections */
+  section{padding:54px 0}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
+  .sec-title{font-size:24px;font-weight:800;letter-spacing:.3px}
+  .sec-title em{font-style:normal;color:var(--brand)}
+  .sec-desc{font-size:14px;color:var(--ink-soft);max-width:560px;margin-top:6px}
+  .sec-link{font-size:14px;font-weight:600;color:var(--brand);white-space:nowrap}
+  .sec-link:hover{text-decoration:underline}
+
+  /* Filter */
+  .filter-bar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;
+  }
+  .chip{
+    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);
+    font-size:14px;font-weight:600;padding:8px 18px;border-radius:999px;cursor:pointer;
+    transition:all .2s;font-family:inherit;
+  }
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+  .chip.active{background:var(--night);border-color:var(--night);color:#fff}
+
+  /* Cards */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;display:flex;flex-direction:column;
+    transition:transform .22s,box-shadow .22s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(20,26,36,.1)}
+  .card-cover{position:relative;aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .card-cover .num{
+    font-size:54px;font-weight:900;color:rgba(255,255,255,.9);letter-spacing:2px;
+    text-shadow:0 4px 20px rgba(0,0,0,.25);
+  }
+  .card-cover .tag{
+    position:absolute;top:12px;left:12px;font-size:12px;font-weight:700;
+    background:rgba(0,0,0,.42);color:#fff;padding:3px 10px;border-radius:999px;
+  }
+  .c1{background:linear-gradient(135deg,#e8453c,#8e1f3c)}
+  .c2{background:linear-gradient(135deg,#2b6cb0,#16375e)}
+  .c3{background:linear-gradient(135deg,#d9822b,#7a3d12)}
+  .c4{background:linear-gradient(135deg,#3f8f6b,#164a35)}
+  .c5{background:linear-gradient(135deg,#7c5cbf,#33215e)}
+  .c6{background:linear-gradient(135deg,#b83b5e,#5a1730)}
+  .card-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .card-body h3{font-size:17px;font-weight:700}
+  .card-body p{font-size:13.5px;color:var(--ink-soft);line-height:1.7;flex:1}
+  .card-meta{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#8a93a2;margin-top:4px}
+  .card-meta .hot{color:var(--brand);font-weight:700}
+
+  /* Feature / reasons */
+  .reasons{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .reason-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .reason{
+    padding:26px 24px;border-radius:var(--radius);background:var(--bg);
+    border:1px solid var(--line);
+  }
+  .reason-icon{
+    width:44px;height:44px;border-radius:12px;background:var(--night);
+    display:flex;align-items:center;justify-content:center;margin-bottom:16px;
+  }
+  .reason-icon svg{width:22px;height:22px}
+  .reason h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
+  .reason p{font-size:14px;color:var(--ink-soft)}
+
+  /* Guide list */
+  .guide-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
+  .prose p{font-size:15px;color:#3d4655;margin-bottom:14px}
+  .prose p strong{color:var(--ink)}
+  .steps{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .steps li{
+    display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:18px 20px;
+  }
+  .step-no{
+    flex:0 0 32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;
+    font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;
+  }
+  .steps li h4{font-size:15.5px;font-weight:700;margin-bottom:3px}
+  .steps li p{font-size:13.5px;color:var(--ink-soft)}
+
+  /* FAQ */
+  .faq-list{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .faq{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;
+  }
+  .faq h3{font-size:15.5px;font-weight:700;margin-bottom:8px;color:var(--night)}
+  .faq p{font-size:14px;color:var(--ink-soft)}
+
+  /* Download band */
+  .band{
+    background:var(--night);color:#f4f1ea;border-radius:22px;padding:38px 40px;
+    display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;
+    position:relative;overflow:hidden;
+  }
+  .band::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle,rgba(232,69,60,.3),transparent 70%);
+  }
+  .band h2{font-size:22px;font-weight:800;margin-bottom:6px;position:relative;z-index:1}
+  .band p{font-size:14px;color:#aab3c2;position:relative;z-index:1;max-width:520px}
+  .btn-download{
+    background:var(--accent);color:#191919;font-weight:800;font-size:15px;
+    padding:13px 34px;border-radius:12px;pointer-events:none;
+    display:inline-flex;align-items:center;gap:9px;position:relative;z-index:1;
+  }
+  .btn-download svg{width:18px;height:18px}
+
+  /* Footer */
+  .site-footer{background:#10151f;color:#9aa4b5;padding:46px 0 30px;margin-top:20px}
+  .footer-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.09)}
+  .footer-brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:#e8e4dc;margin-bottom:12px}
+  .footer-brand .logo-mark{background:var(--brand)}
+  .footer-about{font-size:13.5px;max-width:360px;line-height:1.8}
+  .footer-links{display:flex;gap:56px;flex-wrap:wrap}
+  .footer-col h4{font-size:14px;color:#e8e4dc;margin-bottom:12px;font-weight:700}
+  .footer-col a{display:block;font-size:13.5px;margin-bottom:9px;transition:color .2s}
+  .footer-col a:hover{color:var(--brand)}
+  .footer-bottom{padding-top:22px;font-size:12.5px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+
+  @media (max-width:960px){
+    .hero-inner{grid-template-columns:1fr;padding:46px 0 54px;gap:36px}
+    .poster{max-width:380px;margin:0 auto;width:100%}
+    .grid{grid-template-columns:repeat(2,1fr)}
+    .reason-grid{grid-template-columns:1fr}
+    .guide-wrap{grid-template-columns:1fr;gap:30px}
+    .faq-list{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .nav{display:none}
+    .nav.open{
+      display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+      background:#f6f4ef;border-bottom:1px solid var(--line);padding:18px 20px;gap:16px;
+      align-items:flex-start;box-shadow:0 12px 24px rgba(0,0,0,.06);
+    }
+    .menu-toggle{display:flex}
+    .header-inner{position:relative}
+    h1{font-size:29px}
+    .hero-sub{font-size:15px}
+    .hero-stats{gap:24px}
+    .grid{grid-template-columns:1fr}
+    .sec-title{font-size:21px}
+    section{padding:42px 0}
+    .band{padding:30px 24px}
+    .footer-links{gap:32px}
+  }
+  @media (max-width:420px){
+    .wrap{padding:0 16px}
+    .logo{font-size:15px}
+    .logo-mark{width:30px;height:30px}
+    h1{font-size:26px}
+    .hero-stats div strong{font-size:20px}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9 7l9 5-9 5V7z" fill="#ff5a5f"/></svg>
+      </span>
+      免费短剧在线观看
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#hot">热门短剧</a>
+      <a href="#types">类型分类</a>
+      <a href="#how">观看方式</a>
+      <a href="#faq">常见问题</a>
+      <a class="nav-cta" href="#hot">立即开看</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="展开导航" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="hero-tag"><i></i>今日热门片单已更新</span>
+        <h1>免费短剧在线观看</h1>
+        <p class="hero-sub">想看的短剧不必到处找。这里按热度、类型和完结状态归好片单，提供免费短剧在线观看的剧集列表与简介，几分钟就能挑到合口味的短剧。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#hot">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7V5z" fill="#fff"/></svg>
+            进入播放列表
+          </a>
+          <a class="btn-ghost" href="#types">按类型挑选</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>6+</strong><span>题材分类</span></div>
+          <div><strong>全片单</strong><span>持续补充</span></div>
+          <div><strong>免登录</strong><span>即点即看</span></div>
+        </div>
+      </div>
+      <div class="poster">
+        <div class="poster-top">
+          <span class="poster-badge">正在热播</span>
+        </div>
+        <div class="poster-play" role="img" aria-label="播放">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7V5z" fill="#e8453c"/></svg>
+        </div>
+        <div class="poster-bottom">
+          <h3>都市逆袭 · 全集上线</h3>
+          <p>免费短剧在线观看，从一集看到大结局</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hot list -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">热门<em>短剧</em>片单</h2>
+          <p class="sec-desc">以下为站内主推的短剧条目，按题材与集数整理，点击即可查看简介与播放路径。</p>
+        </div>
+        <a class="sec-link" href="#types">查看全部类型 →</a>
+      </div>
+
+      <div class="filter-bar" id="filterBar" role="tablist" aria-label="题材筛选">
+        <button class="chip active" data-cat="all" role="tab" aria-selected="true">全部</button>
+        <button class="chip" data-cat="都市" role="tab" aria-selected="false">都市</button>
+        <button class="chip" data-cat="古装" role="tab" aria-selected="false">古装</button>
+        <button class="chip" data-cat="悬疑" role="tab" aria-selected="false">悬疑</button>
+        <button class="chip" data-cat="甜宠" role="tab" aria-selected="false">甜宠</button>
+        <button class="chip" data-cat="逆袭" role="tab" aria-selected="false">逆袭</button>
+      </div>
+
+      <div class="grid" id="cardGrid">
+        <article class="card" data-cat="都市">
+          <div class="card-cover c1"><span class="tag">都市</span><span class="num">01</span></div>
+          <div class="card-body">
+            <h3>都市逆风翻盘</h3>
+            <p>小城青年闯进大都市，从被误解到被认可，剧情节奏快，适合碎片时间连续追看。</p>
+            <div class="card-meta"><span>共 80 集</span><span class="hot">热度高</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="古装">
+          <div class="card-cover c2"><span class="tag">古装</span><span class="num">02</span></div>
+          <div class="card-body">
+            <h3>长安小厨娘</h3>
+            <p>以市井烟火为背景的古装短剧，人物关系清晰，单集时长紧凑，适合下饭时观看。</p>
+            <div class="card-meta"><span>共 60 集</span><span class="hot">新上线</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="悬疑">
+          <div class="card-cover c3"><span class="tag">悬疑</span><span class="num">03</span></div>
+          <div class="card-body">
+            <h3>第七封来信</h3>
+            <p>围绕一桩旧事展开的悬疑短剧，每集留一个钩子，适合喜欢推理节奏的观众。</p>
+            <div class="card-meta"><span>共 45 集</span><span class="hot">口碑好</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="甜宠">
+          <div class="card-cover c4"><span class="tag">甜宠</span><span class="num">04</span></div>
+          <div class="card-body">
+            <h3>合租的春天</h3>
+            <p>都市合租题材的轻松短剧，日常对话自然，适合想放松时打开一集。</p>
+            <div class="card-meta"><span>共 52 集</span><span class="hot">完结合集</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="逆袭">
+          <div class="card-cover c5"><span class="tag">逆袭</span><span class="num">05</span></div>
+          <div class="card-body">
+            <h3>我叫林小满</h3>
+            <p>从职场新人到团队主心骨的成长线，升级节奏明确，适合一口气看到结局。</p>
+            <div class="card-meta"><span>共 70 集</span><span class="hot">追剧热门</span></div>
+          </div>
+        </article>
+        <article class="card" data-cat="都市">
+          <div class="card-cover c6"><span class="tag">都市</span><span class="num">06</span></div>
+          <div class="card-body">
+            <h3>深夜便利店</h3>
+            <p>以便利店夜班为场景的单元式短剧，每集一个小故事，适合睡前看两集。</p>
+            <div class="card-meta"><span>共 36 集</span><span class="hot">短小精悍</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reasons -->
+  <section class="reasons" id="types">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">为什么在这里看<em>短剧</em></h2>
+          <p class="sec-desc">免费短剧在线观看的核心诉求是省时、好找、能连续看，页面结构围绕这三点展开。</p>
+        </div>
+      </div>
+      <div class="reason-grid">
+        <div class="reason">
+          <div class="reason-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#ff5a5f" stroke-width="1.8"/><path d="M10 9l5 3-5 3V9z" fill="#ff5a5f"/></svg>
+          </div>
+          <h3>类型分区清楚</h3>
+          <p>都市、古装、悬疑、甜宠、逆袭分门别类，按题材筛选比逐页翻找更直接，减少无效点击。</p>
+        </div>
+        <div class="reason">
+          <div class="reason-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#ffb703" stroke-width="1.8"/><path d="M12 7.5V12l3 2" stroke="#ffb703" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>单集时长友好</h3>
+          <p>短剧单集普遍较短，通勤、排队、午休都能看完一集，适合把碎片时间用起来。</p>
+        </div>
+        <div class="reason">
+          <div class="reason-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h13" stroke="#8fd3c1" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>简介先看再点</h3>
+          <p>每条片单都给出题材、集数与剧情概括，先判断合不合口味，再决定是否进入播放。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">免费短剧在线观看的<em>使用方式</em></h2>
+          <p class="sec-desc">从挑选到播放只需几步，下面按实际操作顺序说明。</p>
+        </div>
+      </div>
+      <div class="guide-wrap">
+        <div class="prose">
+          <p><strong>先明确想看什么。</strong>短剧的题材差异很大：都市类偏现实生活，古装类重人物关系，悬疑类靠节奏和反转，甜宠类节奏轻快。先按题材缩小范围，再用集数判断投入时间，是效率更高的做法。</p>
+          <p><strong>再看简介与集数。</strong>片单里的简介概括了主线与看点，集数则决定追完需要多久。四十集左右的短剧适合周末集中看，七八十集的长片单更适合分几天追。</p>
+          <p><strong>最后进入播放。</strong>免费短剧在线观看不要求复杂注册流程，选中条目后可直接进入剧集页，按顺序或跳集观看。若中途想换口味，回到类型筛选即可重新挑片。</p>
+          <p>需要说明的是，页面展示的片单会随更新调整，具体可看剧集以剧集页为准；不同题材的更新速度并不一致，热门题材通常补充更频繁。</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <span class="step-no">1</span>
+            <div><h4>按题材筛选</h4><p>在热门片单上方点击都市、古装、悬疑等标签，列表会即时过滤。</p></div>
+          </li>
+          <li>
+            <span class="step-no">2</span>
+            <div><h4>读简介定片</h4><p>对比两三条简介的主线与集数，挑一条最符合当下心情的。</p></div>
+          </li>
+          <li>
+            <span class="step-no">3</span>
+            <div><h4>进入剧集页</h4><p>点击条目查看分集，按顺序观看，也可跳到感兴趣的集数。</p></div>
+          </li>
+          <li>
+            <span class="step-no">4</span>
+            <div><h4>收藏或换片</h4><p>不合口味就回到筛选区，换一个题材继续找，不必从头翻。</p></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <div>
+          <h2 class="sec-title">关于<em>免费短剧在线观看</em>的常见问题</h2>
+          <p class="sec-desc">整理访问者最常问的几点，答案以页面实际能力为准。</p>
+        </div>
+      </div>
+      <div class="faq-list">
+        <div class="faq">
+          <h3>需要注册账号吗？</h3>
+          <p>浏览片单与简介不需要注册，直接打开页面即可查看；如后续剧集页有账号相关要求，以该页提示为准。</p>
+        </div>
+        <div class="faq">
+          <h3>短剧是完整版吗？</h3>
+          <p>片单标注了集数，进入剧集页可看到可观看的分集范围。不同条目的上线进度不同，以剧集页显示为准。</p>
+        </div>
+        <div class="faq">
+          <h3>手机上能看吗？</h3>
+          <p>页面按移动端适配，导航可折叠，卡片单列排列，手机浏览器打开即可正常浏览与筛选。</p>
+        </div>
+        <div class="faq">
+          <h3>怎么快速找到想看的类型？</h3>
+          <p>使用热门片单上方的题材标签，点选后列表即时更新，再配合简介与集数判断是否开看。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download band -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>把片单带在身边</h2>
+          <p>下载入口用于获取站内片单文件，方便离线翻阅题材与集数。当前下载地址尚未接入，页面先保留入口位置。</p>
+        </div>
+        <a class="btn-download" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 18h14" stroke="#191919" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          下载
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 7l9 5-9 5V7z" fill="#fff"/></svg>
+          </span>
+          免费短剧在线观看
+        </div>
+        <p class="footer-about">一个围绕短剧的片单页面，按题材与集数整理条目，提供免费短剧在线观看的浏览与筛选入口，帮助访问者更快找到想看的短剧。</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>浏览</h4>
+          <a href="#hot">热门短剧</a>
+          <a href="#types">类型分类</a>
+          <a href="#how">观看方式</a>
+        </div>
+        <div class="footer-col">
+          <h4>帮助</h4>
+          <a href="#faq">常见问题</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 免费短剧在线观看 · 片单内容以剧集页为准</span>
+      <span>免费短剧在线观看，按题材挑片更省时间</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var toggle = document.getElementById('menuToggle');
+    var nav = document.getElementById('nav');
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? '收起导航' : '展开导航');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){ nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+    });
+
+    var chips = document.querySelectorAll('#filterBar .chip');
+    var cards = document.querySelectorAll('#cardGrid .card');
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){
+        chips.forEach(function(c){ c.classList.remove('active'); c.setAttribute('aria-selected','false'); });
+        chip.classList.add('active');
+        chip.setAttribute('aria-selected','true');
+        var cat = chip.getAttribute('data-cat');
+        cards.forEach(function(card){
+          var show = (cat === 'all' || card.getAttribute('data-cat') === cat);
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
